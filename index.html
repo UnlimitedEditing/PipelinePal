@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Production Planner Pal</title>
+  <meta name="title" content="Production Planner Pal" />
+  <meta name="description" content="Production Planner Pal" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Production Planner Pal" />
+  <meta property="og:description" content="Production Planner Pal" />
+  <meta property="og:image" content="splash.png" />
+
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:title" content="Production Planner Pal" />
+  <meta property="twitter:description" content="Production Planner Pal" />
+  <meta property="twitter:image" content="splash.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet" />
+
+  <script type="importmap">
+    {
+      "imports": {
+        "react": "https://esm.sh/react@18",
+        "react-dom/client": "https://esm.sh/react-dom@18/client"
+      }
+    }
+  </script>
+
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      /* Base Colors extracted from your provided index.html */
+      --bg:       #080a0c;
+      --bg2:      #0d1014;
+      --bg3:      #111518;
+      --panel:    #141a1f;
+      --border:   rgba(255,255,255,0.07);
+      --ember:    #ff6b2b;
+      --ember2:   #ff9554;
+      --arc:      #4ae3ff;
+      --arc2:     #1ab8d8;
+      --sage:     #6affc8;
+      --sage2:    #3dd9a0;
+      --text:     #e8eaed;
+      --muted:    #7a8590;
+      --dim:      #3a434d;
+
+      /* ── Dynamic Mapping to Pipeline.jsx CSS Requirements ── */
+      --color-background-primary: var(--bg);
+      --color-background-secondary: var(--panel);
+      --color-background-tertiary: var(--bg3);
+      
+      --color-border-primary: var(--border);
+      --color-border-secondary: var(--border);
+      --color-border-tertiary: var(--dim);
+
+      --color-text-primary: var(--text);
+      --color-text-secondary: var(--muted);
+      --color-text-tertiary: var(--dim);
+
+      --color-background-info: rgba(74, 227, 255, 0.1);
+      --color-text-info: var(--arc);
+      --color-border-info: var(--arc);
+
+      --color-background-success: rgba(106, 255, 200, 0.1);
+      --color-text-success: var(--sage);
+
+      --color-background-danger: rgba(255, 107, 43, 0.1);
+      --color-text-danger: var(--ember);
+
+      --color-background-warning: rgba(255, 189, 46, 0.1);
+      --color-text-warning: #ffbd2e;
+
+      --font-mono: 'DM Mono', monospace;
+      --font-sans: 'Syne', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    /* Cinematic Noise Overlay from your design */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.022;
+      pointer-events: none;
+      z-index: 1000;
+    }
+
+    #root {
+      position: relative;
+      z-index: 10;
+      padding: 40px 20px;
+    }
+    
+    /* Optional Custom Scrollbar to match dark aesthetic */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--dim); border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+  </style>
+</head>
+<body>
+
+  <div id="root">
+    <div style="display: flex; justify-content: center; align-items: center; height: 80vh; flex-direction: column; gap: 1rem; font-family: var(--font-mono); color: var(--ember);">
+      <div style="width: 40px; height: 40px; border: 3px solid var(--border); border-top-color: var(--ember); border-radius: 50%; animation: spin 1s linear infinite;"></div>
+      Loading Production Planner Pal...
+    </div>
+    <style>@keyframes spin { to { transform: rotate(360deg); } }</style>
+  </div>
+
+  <script type="text/babel" data-type="module">
+    import React from 'react';
+    import { createRoot } from 'react-dom/client';
+    
+    // Import your main component from pipeline.jsx
+    import PipelineApp from './pipeline.jsx';
+
+    const rootElement = document.getElementById('root');
+    const root = createRoot(rootElement);
+    
+    // Render the Application
+    root.render(<PipelineApp />);
+  </script>
+
+</body>
+</html>
