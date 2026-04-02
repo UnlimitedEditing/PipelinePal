@@ -416,10 +416,13 @@ function PipelineApp() {
     }
     return []; // Return empty if nothing is saved yet
   });
+  useEffect(() => {
+    localStorage.setItem("planner_pal_projects", JSON.stringify(projects));
+  }, [projects]);
   const [activeId, setActiveId] = useState(null);
   const [activePhase, setActivePhase] = useState(0);
   const [newTitle, setNewTitle] = useState("");
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     (async () => {
