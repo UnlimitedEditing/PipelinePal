@@ -409,7 +409,13 @@ function PostPhase({ data, onChange, onGate }) {
 }
 
 function PipelineApp() {
-  const [projects, setProjects] = useState([]);
+  const [projects, setProjects] = useState(() => {
+    const saved = localStorage.getItem("planner_pal_projects");
+    if (saved) {
+      return JSON.parse(saved);
+    }
+    return []; // Return empty if nothing is saved yet
+  });
   const [activeId, setActiveId] = useState(null);
   const [activePhase, setActivePhase] = useState(0);
   const [newTitle, setNewTitle] = useState("");
